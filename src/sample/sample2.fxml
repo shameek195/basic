@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -8,10 +9,11 @@
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootpane1" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #336699#336699 #336699#336699;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller2">
+<AnchorPane fx:id="rootpane1" prefHeight="475.0" prefWidth="819.0" style="-fx-background-color: #336699#336699 #336699#336655;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller2">
    <children>
-      <TableView layoutY="83.0" prefHeight="27.0" prefWidth="601.0">
+      <TableView layoutX="218.0" layoutY="73.0" prefHeight="27.0" prefWidth="601.0">
         <columns>
           <TableColumn prefWidth="130.0" text="MONDAY" />
           <TableColumn prefWidth="111.0" text="TUESDAY" />
@@ -20,9 +22,9 @@
             <TableColumn prefWidth="127.0" text="FRIDAY" />
         </columns>
       </TableView>
-      <Label layoutX="257.0" layoutY="21.0" prefHeight="57.0" prefWidth="87.0" text="SECTION 5-A" textFill="WHITE" />
-      <Button layoutX="38.0" layoutY="36.0" mnemonicParsing="false" onAction="#BACK1" stylesheets="@../Styles.css" text="BACK" />
-      <Button fx:id="m1" layoutY="111.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.00-9.55">
+      <Label layoutX="458.0" layoutY="8.0" prefHeight="57.0" prefWidth="87.0" text="SECTION 5-A" textFill="WHITE" />
+      <Button layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#BACK1" stylesheets="@../Styles.css" text="BACK" />
+      <Button fx:id="m1" layoutX="218.0" layoutY="101.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.00-9.55">
          <effect>
             <Lighting>
                <bumpInput>
@@ -34,7 +36,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="m7" layoutY="432.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="4.00-5.00">
+      <Button fx:id="m7" layoutX="218.0" layoutY="422.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="4.00-5.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -46,7 +48,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="m2" layoutY="154.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.55-10.50">
+      <Button fx:id="m2" layoutX="218.0" layoutY="144.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.55-10.50">
          <effect>
             <Lighting>
                <bumpInput>
@@ -58,7 +60,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="m3" layoutX="1.0" layoutY="219.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="11.10-12.05">
+      <Button fx:id="m3" layoutX="219.0" layoutY="209.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="11.10-12.05">
          <effect>
             <Lighting>
                <bumpInput>
@@ -70,7 +72,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="m4" layoutX="1.0" layoutY="261.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="12.05-1.00">
+      <Button fx:id="m4" layoutX="219.0" layoutY="251.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="12.05-1.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -82,7 +84,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="m5" layoutY="346.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="2.00-3.00">
+      <Button fx:id="m5" layoutX="218.0" layoutY="336.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="2.00-3.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -94,7 +96,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="m6" layoutY="389.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="3.00-4.00">
+      <Button fx:id="m6" layoutX="218.0" layoutY="379.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="3.00-4.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -106,7 +108,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="t1" layoutX="120.0" layoutY="111.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.00-9.55">
+      <Button fx:id="t1" layoutX="338.0" layoutY="101.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.00-9.55">
          <effect>
             <Lighting>
                <bumpInput>
@@ -118,7 +120,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="t7" layoutX="120.0" layoutY="432.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="4.00-5.00">
+      <Button fx:id="t7" layoutX="338.0" layoutY="422.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="4.00-5.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -130,7 +132,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="t2" layoutX="120.0" layoutY="154.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.55-10.50">
+      <Button fx:id="t2" layoutX="338.0" layoutY="144.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.55-10.50">
          <effect>
             <Lighting>
                <bumpInput>
@@ -142,7 +144,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="t3" layoutX="121.0" layoutY="219.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="11.10-12.05">
+      <Button fx:id="t3" layoutX="339.0" layoutY="209.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="11.10-12.05">
          <effect>
             <Lighting>
                <bumpInput>
@@ -154,7 +156,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="t4" layoutX="121.0" layoutY="261.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="12.05-1.00">
+      <Button fx:id="t4" layoutX="339.0" layoutY="251.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="12.05-1.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -166,7 +168,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="t5" layoutX="120.0" layoutY="346.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="2.00-3.00">
+      <Button fx:id="t5" layoutX="338.0" layoutY="336.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="2.00-3.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -178,7 +180,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="t6" layoutX="120.0" layoutY="389.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="3.00-4.00">
+      <Button fx:id="t6" layoutX="338.0" layoutY="379.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="3.00-4.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -190,7 +192,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="w1" layoutX="240.0" layoutY="111.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.00-9.55">
+      <Button fx:id="w1" layoutX="458.0" layoutY="101.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.00-9.55">
          <effect>
             <Lighting>
                <bumpInput>
@@ -202,7 +204,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="w7" layoutX="240.0" layoutY="432.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="4.00-5.00">
+      <Button fx:id="w7" layoutX="458.0" layoutY="422.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="4.00-5.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -214,7 +216,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="w2" layoutX="240.0" layoutY="154.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.55-10.50">
+      <Button fx:id="w2" layoutX="458.0" layoutY="144.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.55-10.50">
          <effect>
             <Lighting>
                <bumpInput>
@@ -226,7 +228,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="w3" layoutX="241.0" layoutY="219.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="11.10-12.05">
+      <Button fx:id="w3" layoutX="459.0" layoutY="209.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="11.10-12.05">
          <effect>
             <Lighting>
                <bumpInput>
@@ -238,7 +240,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="w4" layoutX="241.0" layoutY="261.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="12.05-1.00">
+      <Button fx:id="w4" layoutX="459.0" layoutY="251.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="12.05-1.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -250,7 +252,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="w5" layoutX="240.0" layoutY="346.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="2.00-3.00">
+      <Button fx:id="w5" layoutX="458.0" layoutY="336.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="2.00-3.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -262,7 +264,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="w6" layoutX="240.0" layoutY="389.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="3.00-4.00">
+      <Button fx:id="w6" layoutX="458.0" layoutY="379.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="3.00-4.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -274,7 +276,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="th1" layoutX="360.0" layoutY="111.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.00-9.55">
+      <Button fx:id="th1" layoutX="578.0" layoutY="101.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.00-9.55">
          <effect>
             <Lighting>
                <bumpInput>
@@ -286,7 +288,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="th7" layoutX="360.0" layoutY="432.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="4.00-5.00">
+      <Button fx:id="th7" layoutX="578.0" layoutY="422.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="4.00-5.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -298,7 +300,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="th2" layoutX="360.0" layoutY="154.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.55-10.50">
+      <Button fx:id="th2" layoutX="578.0" layoutY="144.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.55-10.50">
          <effect>
             <Lighting>
                <bumpInput>
@@ -310,7 +312,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="th3" layoutX="361.0" layoutY="219.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="11.10-12.05">
+      <Button fx:id="th3" layoutX="579.0" layoutY="209.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="11.10-12.05">
          <effect>
             <Lighting>
                <bumpInput>
@@ -322,7 +324,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="th4" layoutX="361.0" layoutY="261.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="12.05-1.00">
+      <Button fx:id="th4" layoutX="579.0" layoutY="251.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="12.05-1.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -334,7 +336,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="th5" layoutX="360.0" layoutY="346.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="2.00-3.00">
+      <Button fx:id="th5" layoutX="578.0" layoutY="336.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="2.00-3.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -346,7 +348,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="th6" layoutX="360.0" layoutY="389.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="3.00-4.00">
+      <Button fx:id="th6" layoutX="578.0" layoutY="379.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="3.00-4.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -358,7 +360,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="fr1" layoutX="480.0" layoutY="111.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.00-9.55">
+      <Button fx:id="f1" layoutX="698.0" layoutY="101.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.00-9.55">
          <effect>
             <Lighting>
                <bumpInput>
@@ -370,7 +372,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="fr7" layoutX="480.0" layoutY="432.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="4.00-5.00">
+      <Button fx:id="f7" layoutX="698.0" layoutY="422.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="4.00-5.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -382,7 +384,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="fr2" layoutX="480.0" layoutY="154.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.55-10.50">
+      <Button fx:id="f2" layoutX="698.0" layoutY="144.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="9.55-10.50">
          <effect>
             <Lighting>
                <bumpInput>
@@ -394,7 +396,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="fr3" layoutX="481.0" layoutY="219.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="11.10-12.05">
+      <Button fx:id="f3" layoutX="699.0" layoutY="209.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="11.10-12.05">
          <effect>
             <Lighting>
                <bumpInput>
@@ -406,7 +408,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="fr4" layoutX="481.0" layoutY="261.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="12.05-1.00">
+      <Button fx:id="f4" layoutX="699.0" layoutY="251.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="12.05-1.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -418,7 +420,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="fr5" layoutX="480.0" layoutY="346.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="2.00-3.00">
+      <Button fx:id="f5" layoutX="698.0" layoutY="336.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="2.00-3.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -430,7 +432,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="fr6" layoutX="480.0" layoutY="389.0" mnemonicParsing="false" onAction="#setTT" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="3.00-4.00">
+      <Button fx:id="f6" layoutX="698.0" layoutY="379.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #ffffff#ffffff;" text="3.00-4.00">
          <effect>
             <Lighting>
                <bumpInput>
@@ -442,7 +444,16 @@
             </Lighting>
          </effect>
       </Button>
-      <Label layoutX="1.0" layoutY="304.0" prefHeight="43.0" prefWidth="600.0" text="                                                                   LUNCH BREAK" textFill="#fcfcfc" />
-      <Label layoutY="202.0" prefHeight="17.0" prefWidth="600.0" text="                                                                       TEA BREAK" textFill="WHITE" />
+      <Label layoutX="219.0" layoutY="294.0" prefHeight="43.0" prefWidth="600.0" text="                                                                   LUNCH BREAK" textFill="#fcfcfc" />
+      <Label layoutX="218.0" layoutY="192.0" prefHeight="17.0" prefWidth="600.0" text="                                                                       TEA BREAK" textFill="WHITE" />
+      <Text fill="WHITE" layoutX="34.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT THE SUBJECT" />
+      <ComboBox fx:id="comboBox1" layoutX="29.0" layoutY="117.0" onAction="#initialize" prefWidth="150.0" />
+      <Text fill="WHITE" layoutX="74.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FACULTY" />
+      <Label fx:id="label" layoutX="34.0" layoutY="203.0" prefHeight="27.0" prefWidth="140.0" style="-fx-background-color: WHITE;" />
+      <Button layoutX="59.0" layoutY="406.0" mnemonicParsing="false" onAction="#assign" stylesheets="@../Styles.css" text="ASSIGN" />
+      <Text fill="WHITE" layoutX="87.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAY" />
+      <Text fill="WHITE" layoutX="85.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HOUR" />
+      <ComboBox fx:id="comboBox12" layoutX="29.0" layoutY="288.0" onAction="#initialize" prefWidth="150.0" />
+      <ComboBox fx:id="comboBox121" layoutX="29.0" layoutY="365.0" onAction="#initialize" prefWidth="150.0" />
    </children>
 </AnchorPane>

@@ -2,11 +2,14 @@ package sample;
 
 import connectivity.connectionClass;
 import javafx.animation.FadeTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -26,34 +29,51 @@ public class Controller {
     public TextField DELETE;
     public AnchorPane rootpane;
     public TextField SECOND;
+    public ComboBox combobox;
+    public String SECTION;
     Statement statement,statement1;
+    public static int flag=0;
     connectionClass connectionclass=new connectionClass();
     Connection connection=connectionclass.getConnection();
+    public void initialize() {
+        ObservableList<String> list = FXCollections.observableArrayList("A","B");
+        combobox.setItems(list);
+        SECTION= (String) combobox.getValue();
+
+
+    }
     public void ADD(ActionEvent actionEvent) throws SQLException {
        // connectionClass connectionclass=new connectionClass();
       //  Connection connection=connectionclass.getConnection();
 
-        String sql="INSERT INTO lecturers VALUES('"+NAME.getText()+"','"+SUBJECT.getText()+"','"+SECOND.getText()+"')";
+        String sql="INSERT INTO lecturers VALUES('"+NAME.getText()+"','"+SUBJECT.getText()+"','"+SECOND.getText()+"','"+SECTION+"')";
         statement=connection.createStatement();
         statement.executeUpdate(sql);
         LABEL.setText("Data successfully inserted");
         NAME.setText("");
         SUBJECT.setText("");
         SECOND.setText("");
+        combobox.setItems(null);
 
 
 
 
     }
 
+
     public void DELETE(ActionEvent actionEvent) throws SQLException {
-        DELETE.setVisible(true);
-        String del=DELETE.getText();
-        String sql1="DELETE  FROM lecturers WHERE faculty ='"+del+"'";
-        statement1=connection.createStatement();
-        statement1.execute(sql1);
-        LABEL.setText("Data successfully deleted");
-        DELETE.setText("");
+       if(flag==0) {
+           DELETE.setVisible(true);
+           flag=1;
+       }
+       else {
+           String del = DELETE.getText();
+           String sql1 = "DELETE  FROM lecturers WHERE faculty ='" + del + "'";
+           statement1 = connection.createStatement();
+           statement1.execute(sql1);
+           LABEL.setText("Data successfully deleted");
+           DELETE.setText("");
+       }
 
     }
 
@@ -105,6 +125,7 @@ public class Controller {
             e.printStackTrace();
         }
     }
+
 
 
 }
