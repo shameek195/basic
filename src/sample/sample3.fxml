@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootpane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="802.0" style="-fx-background-color: #336699#336699;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller3">
+<AnchorPane fx:id="rootpane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="817.0" style="-fx-background-color: #336699#336699;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller3">
    <children>
       <TableView layoutX="196.0" layoutY="65.0" prefHeight="54.0" prefWidth="600.0">
          <columns>
@@ -454,10 +454,12 @@
       <ComboBox fx:id="comboBox1" layoutX="28.0" layoutY="114.0" onAction="#initialize" prefWidth="150.0" />
       <Text fill="WHITE" layoutX="73.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FACULTY" />
       <Label fx:id="label" layoutX="33.0" layoutY="200.0" prefHeight="27.0" prefWidth="140.0" style="-fx-background-color: WHITE;" />
-      <Button layoutX="58.0" layoutY="415.0" mnemonicParsing="false" onAction="#assign" stylesheets="@../Styles.css" text="ASSIGN" />
+      <Button layoutX="4.0" layoutY="416.0" mnemonicParsing="false" onAction="#assign" stylesheets="@../Styles.css" text="ASSIGN" />
       <Text fill="WHITE" layoutX="86.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAY" />
       <Text fill="WHITE" layoutX="84.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HOUR" />
       <ComboBox fx:id="comboBox12" layoutX="28.0" layoutY="285.0" onAction="#initialize" prefWidth="150.0" />
       <ComboBox fx:id="comboBox121" layoutX="28.0" layoutY="362.0" onAction="#initialize" prefWidth="150.0" />
+      <Button layoutX="103.0" layoutY="416.0" mnemonicParsing="false" onAction="#update" stylesheets="@../Styles.css" text="UPDATE" />
+      <Button layoutX="696.0" layoutY="482.0" mnemonicParsing="false" onAction="#clearall" stylesheets="@../Styles.css" text="CLEAR ALL" />
    </children>
 </AnchorPane>

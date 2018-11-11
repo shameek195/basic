@@ -80,6 +80,7 @@ private AnchorPane rootpane1;
 
             thirdView = (Parent) load1.load();
             Controller2 c2=load1.getController();
+
             c2.refresh();
             Scene secondScene=new Scene(thirdView);
             Stage curStage = (Stage) rootpane1.getScene().getWindow();
@@ -104,6 +105,7 @@ private AnchorPane rootpane1;
 
             thirdView = (Parent) load1.load();
             Controller3 c3=load1.getController();
+            c3.refresh();
             c3.refresh();
             Scene secondScene=new Scene(thirdView);
             Stage curStage = (Stage) rootpane1.getScene().getWindow();

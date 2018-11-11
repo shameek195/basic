@@ -20,6 +20,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static sample.Controller2.str1;
 
@@ -72,7 +74,9 @@ public class Controller3 {
     connectionClass connectionclass = new connectionClass();
     Connection connection = connectionclass.getConnection();
     ResultSet rs,rs1;
-    public static String name,str,name1,str1;
+    int labflag=0;
+    static ResultSet rscount;
+    public static String name,str,name1,str1,subjcount,c,facbusy;
     @FXML
     private void initialize() {
 
@@ -128,97 +132,314 @@ public class Controller3 {
     }
     public void assign(ActionEvent actionEvent) {
         String sql = "INSERT INTO `timetable5b` (`day`, `hour`, `subject`, `faculty`, `section`) VALUES('"+comboBox12.getValue()+"', '"+comboBox121.getValue()+"', '"+comboBox1.getValue()+"', '"+label.getText()+"', 'B');";
+        String sqlsame="SELECT faculty FROM timetable5a where day='"+comboBox12.getValue()+"'AND hour='"+comboBox121.getValue()+"'";
+        subjcount= (String) comboBox1.getValue();
+        Pattern p=Pattern.compile("LAB");
+        Matcher m=p.matcher(subjcount);
+        String sqlcheck="SELECT `countof` FROM count WHERE subject='"+subjcount+"' AND section='B'";
+        String sqlop="UPDATE `count` SET `countof`=countof-1 WHERE subject='"+subjcount+"' AND section='B'";
+        try {rs=statement.executeQuery(sqlsame);
+             rs.next();
+             facbusy=rs.getString("faculty");
 
-        try {
-            statement = connection.createStatement();
-            statement.executeUpdate(sql);
+            rscount=statement.executeQuery(sqlcheck);
+            rscount.next();
+            c=rscount.getString("countof");
+            System.out.println(c);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(comboBox12.getValue()=="MONDAY")
-        {if(comboBox121.getValue()=="1")
-            m1.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="2")
-                m2.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="3")
-                m3.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="4")
-                m4.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="5")
-                m5.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="6")
-                m6.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="7")
-                m7.setText(str+"\n"+name);
-
+        if(c.compareTo("0")==0||label.getText().compareTo(facbusy)==0)
+        {
+            System.out.println("No of hours has been exceeded");
+            System.out.println("faculty is busy");
         }
-        if(comboBox12.getValue()=="TUESDAY")
-        {if(comboBox121.getValue()=="1")
-            t1.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="2")
-                t2.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="3")
-                t3.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="4")
-                t4.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="5")
-                t5.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="6")
-                t6.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="7")
-                t7.setText(str+"\n"+name);
+        else {
+            if(m.find())
+            {
+            labflag=1;
+            String sqlab="UPDATE `count` SET `countof`=1 WHERE subject='"+subjcount+"'AND section='A'";
+            try {statement = connection.createStatement();
+                statement.executeUpdate(sqlab);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
-        }
-        if(comboBox12.getValue()=="WEDNESDAY")
-        {if(comboBox121.getValue()=="1")
-            w1.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="2")
-                w2.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="3")
-                w3.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="4")
-                w4.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="5")
-                w5.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="6")
-                w6.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="7")
-                w7.setText(str+"\n"+name);
+            }
+            try {
+                statement = connection.createStatement();
+                statement.executeUpdate(sql);
+                statement.executeUpdate(sqlop);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            if (comboBox12.getValue() == "MONDAY") {
+                if (comboBox121.getValue() == "1") {
+                    if(labflag==1) {
+                        m1.setText(str + "\n" + name);
+                        m2.setText(str + "\n" + name);
+                        m3.setText(str + "\n" + name);
+                        String query="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '2', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        String query1="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '3', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        try {
+                            statement.executeUpdate(query);
+                            statement.executeUpdate(query1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {m1.setText(str + "\n" + name);
 
-        }
-        if(comboBox12.getValue()=="THURSDAY")
-        {if(comboBox121.getValue()=="1")
-            th1.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="2")
-                th2.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="3")
-                th3.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="4")
-                th4.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="5")
-                th5.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="6")
-                th6.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="7")
-                th7.setText(str+"\n"+name);
+                    }
 
-        }
-        if(comboBox12.getValue()=="FRIDAY")
-        {if(comboBox121.getValue()=="1")
-            f1.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="2")
-                f2.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="3")
-                f3.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="4")
-                f4.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="5")
-                f5.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="6")
-                f6.setText(str+"\n"+name);
-            if(comboBox121.getValue()=="7")
-                f7.setText(str+"\n"+name);
+                }
+                if (comboBox121.getValue() == "2")
+                    m2.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "3")
+                    m3.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "4")
+                    m4.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "5") {
+                    if(labflag==1) {
+                        m5.setText(str + "\n" + name);
+                        m6.setText(str + "\n" + name);
+                        m7.setText(str + "\n" + name);
+                        String query="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '6', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        String query1="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '7', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        try {
+                            statement.executeUpdate(query);
+                            statement.executeUpdate(query1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {m5.setText(str + "\n" + name);
 
+                    }
+
+                }
+                if (comboBox121.getValue() == "6")
+                    m6.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "7")
+                    m7.setText(str + "\n" + name);
+
+            }
+            if (comboBox12.getValue() == "TUESDAY") {
+                if (comboBox121.getValue() == "1") {
+                    if(labflag==1) {
+                        t1.setText(str + "\n" + name);
+                        t2.setText(str + "\n" + name);
+                        t3.setText(str + "\n" + name);
+                        String query="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '2', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        String query1="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '3', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        try {
+                            statement.executeUpdate(query);
+                            statement.executeUpdate(query1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {t1.setText(str + "\n" + name);
+
+                    }
+                }
+                if (comboBox121.getValue() == "2")
+                    t2.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "3")
+                    t3.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "4")
+                    t4.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "5")
+                {
+                    if(labflag==1) {
+                        t5.setText(str + "\n" + name);
+                        t6.setText(str + "\n" + name);
+                        t7.setText(str + "\n" + name);
+                        String query="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '6', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        String query1="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '7', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        try {
+                            statement.executeUpdate(query);
+                            statement.executeUpdate(query1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {t5.setText(str + "\n" + name);
+
+                    }
+                }
+                if (comboBox121.getValue() == "6")
+                    t6.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "7")
+                    t7.setText(str + "\n" + name);
+
+            }
+            if (comboBox12.getValue() == "WEDNESDAY") {
+                if (comboBox121.getValue() == "1")
+                {
+                    if(labflag==1) {
+                        w1.setText(str + "\n" + name);
+                        w2.setText(str + "\n" + name);
+                        w3.setText(str + "\n" + name);
+                        String query="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '2', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        String query1="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '3', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        try {
+                            statement.executeUpdate(query);
+                            statement.executeUpdate(query1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {w1.setText(str + "\n" + name);
+
+                    }
+                }
+                if (comboBox121.getValue() == "2")
+                    w2.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "3")
+                    w3.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "4")
+                    w4.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "5")
+                {
+                    if(labflag==1) {
+                        w5.setText(str + "\n" + name);
+                        w6.setText(str + "\n" + name);
+                        w7.setText(str + "\n" + name);
+                        String query="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '6', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        String query1="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '7', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        try {
+                            statement.executeUpdate(query);
+                            statement.executeUpdate(query1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    else
+                    {w5.setText(str + "\n" + name);
+
+                    }
+                }
+                if (comboBox121.getValue() == "6")
+                    w6.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "7")
+                    w7.setText(str + "\n" + name);
+
+            }
+            if (comboBox12.getValue() == "THURSDAY") {
+                if (comboBox121.getValue() == "1")
+                {
+                    if(labflag==1) {
+                        th1.setText(str + "\n" + name);
+                        th2.setText(str + "\n" + name);
+                        th3.setText(str + "\n" + name);
+                        String query="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '2', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        String query1="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '3', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        try {
+                            statement.executeUpdate(query);
+                            statement.executeUpdate(query1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {th1.setText(str + "\n" + name);
+
+                    }
+                }
+                if (comboBox121.getValue() == "2")
+                    th2.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "3")
+                    th3.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "4")
+                    th4.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "5")
+                {
+                    if(labflag==1) {
+                        th5.setText(str + "\n" + name);
+                        th6.setText(str + "\n" + name);
+                        th7.setText(str + "\n" + name);
+                        String query="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '6', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        String query1="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '7', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        try {
+                            statement.executeUpdate(query);
+                            statement.executeUpdate(query1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {th5.setText(str + "\n" + name);
+
+                    }
+                }
+                if (comboBox121.getValue() == "6")
+                    th6.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "7")
+                    th7.setText(str + "\n" + name);
+
+            }
+            if (comboBox12.getValue() == "FRIDAY") {
+                if (comboBox121.getValue() == "1")
+                {
+                    if(labflag==1) {
+                        f1.setText(str + "\n" + name);
+                        f2.setText(str + "\n" + name);
+                        f3.setText(str + "\n" + name);
+                        String query="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '2', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        String query1="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '3', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        try {
+                            statement.executeUpdate(query);
+                            statement.executeUpdate(query1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {f1.setText(str + "\n" + name);
+
+                    }
+                }
+                if (comboBox121.getValue() == "2")
+                    f2.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "3")
+                    f3.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "4")
+                    f4.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "5")
+                {
+                    if(labflag==1) {
+                        f5.setText(str + "\n" + name);
+                        f6.setText(str + "\n" + name);
+                        f7.setText(str + "\n" + name);
+                        String query="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '6', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        String query1="INSERT INTO `timetable5a`(`day`, `hour`, `subject`, `faculty`, `section`) VALUES ('" + comboBox12.getValue() + "', '7', '" + comboBox1.getValue() + "', '" + label.getText() + "', 'B');";
+                        try {
+                            statement.executeUpdate(query);
+                            statement.executeUpdate(query1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {f5.setText(str + "\n" + name);
+
+                    }
+                }
+                if (comboBox121.getValue() == "6")
+                    f6.setText(str + "\n" + name);
+                if (comboBox121.getValue() == "7")
+                    f7.setText(str + "\n" + name);
+
+
+            }
         }
     }
 
@@ -248,7 +469,19 @@ public class Controller3 {
             rs1.next();
             name1 = rs1.getString("subject");
             str1 = rs1.getString("faculty");
-            m1.setText(name1 + "\n" + str1);
+            Pattern p=Pattern.compile("LAB");
+            Matcher m=p.matcher(name1);
+            if(m.find())
+            {
+                System.out.println("matched");
+                m1.setText(name1 + "\n" + str1);
+                m2.setText(name1 + "\n" + str1);
+                m3.setText(name1 + "\n" + str1);
+
+            }
+            else{
+                m1.setText(name1 + "\n" + str1);
+            }
 
             sql3 = "SELECT * FROM timetable5b WHERE day='MONDAY' AND hour='2'";
 
@@ -284,7 +517,16 @@ public class Controller3 {
             rs1.next();
             name1 = rs1.getString("subject");
             str1 = rs1.getString("faculty");
-            m5.setText(name1 + "\n" + str1);
+            if(m.find())
+            {
+                m5.setText(name1 + "\n" + str1);
+                m6.setText(name1 + "\n" + str1);
+                m7.setText(name1 + "\n" + str1);
+
+            }
+            else{
+                m5.setText(name1 + "\n" + str1);
+            }
 
             sql3 = "SELECT * FROM timetable5b WHERE day='MONDAY' AND hour='6'";
 
@@ -311,7 +553,17 @@ public class Controller3 {
             rs1.next();
             name1 = rs1.getString("subject");
             str1 = rs1.getString("faculty");
-            t1.setText(name1 + "\n" + str1);
+            if(m.find())
+            {
+                System.out.println("matched");
+                t1.setText(name1 + "\n" + str1);
+                t2.setText(name1 + "\n" + str1);
+                t3.setText(name1 + "\n" + str1);
+
+            }
+            else{
+                t1.setText(name1 + "\n" + str1);
+            }
 
             sql3 = "SELECT * FROM timetable5b WHERE day='TUESDAY' AND hour='2'";
 
@@ -347,7 +599,17 @@ public class Controller3 {
             rs1.next();
             name1 = rs1.getString("subject");
             str1 = rs1.getString("faculty");
-            t5.setText(name1 + "\n" + str1);
+            if(m.find())
+            {
+                System.out.println("matched");
+                t5.setText(name1 + "\n" + str1);
+                t6.setText(name1 + "\n" + str1);
+                t7.setText(name1 + "\n" + str1);
+
+            }
+            else{
+                t5.setText(name1 + "\n" + str1);
+            }
 
             sql3 = "SELECT * FROM timetable5b WHERE day='TUESDAY' AND hour='6'";
 
@@ -374,7 +636,17 @@ public class Controller3 {
             rs1.next();
             name1 = rs1.getString("subject");
             str1 = rs1.getString("faculty");
-            w1.setText(name1 + "\n" + str1);
+            if(m.find())
+            {
+                System.out.println("matched");
+                w1.setText(name1 + "\n" + str1);
+                w2.setText(name1 + "\n" + str1);
+                w3.setText(name1 + "\n" + str1);
+
+            }
+            else{
+                w1.setText(name1 + "\n" + str1);
+            }
 
             sql3 = "SELECT * FROM timetable5b WHERE day='WEDNESDAY' AND hour='2'";
 
@@ -410,7 +682,17 @@ public class Controller3 {
             rs1.next();
             name1 = rs1.getString("subject");
             str1 = rs1.getString("faculty");
-            w5.setText(name1 + "\n" + str1);
+            if(m.find())
+            {
+                System.out.println("matched");
+                w5.setText(name1 + "\n" + str1);
+                w6.setText(name1 + "\n" + str1);
+                w7.setText(name1 + "\n" + str1);
+
+            }
+            else{
+                w5.setText(name1 + "\n" + str1);
+            }
 
             sql3 = "SELECT * FROM timetable5b WHERE day='WEDNESDAY' AND hour='6'";
 
@@ -437,7 +719,17 @@ public class Controller3 {
             rs1.next();
             name1 = rs1.getString("subject");
             str1 = rs1.getString("faculty");
-            th1.setText(name1 + "\n" + str1);
+            if(m.find())
+            {
+                System.out.println("matched");
+                th1.setText(name1 + "\n" + str1);
+                th2.setText(name1 + "\n" + str1);
+                th3.setText(name1 + "\n" + str1);
+
+            }
+            else{
+                th1.setText(name1 + "\n" + str1);
+            }
 
             sql3 = "SELECT * FROM timetable5b WHERE day='THURSDAY' AND hour='2'";
 
@@ -473,7 +765,17 @@ public class Controller3 {
             rs1.next();
             name1 = rs1.getString("subject");
             str1 = rs1.getString("faculty");
-            th5.setText(name1 + "\n" + str1);
+            if(m.find())
+            {
+                System.out.println("matched");
+                th5.setText(name1 + "\n" + str1);
+                th6.setText(name1 + "\n" + str1);
+                th7.setText(name1 + "\n" + str1);
+
+            }
+            else{
+                th5.setText(name1 + "\n" + str1);
+            }
 
             sql3 = "SELECT * FROM timetable5b WHERE day='THURSDAY' AND hour='6'";
 
@@ -500,7 +802,17 @@ public class Controller3 {
             rs1.next();
             name1 = rs1.getString("subject");
             str1 = rs1.getString("faculty");
-            f1.setText(name1 + "\n" + str1);
+            if(m.find())
+            {
+                System.out.println("matched");
+                f1.setText(name1 + "\n" + str1);
+                f2.setText(name1 + "\n" + str1);
+                f3.setText(name1 + "\n" + str1);
+
+            }
+            else{
+                f1.setText(name1 + "\n" + str1);
+            }
 
             sql3 = "SELECT * FROM timetable5b WHERE day='FRIDAY' AND hour='2'";
 
@@ -536,7 +848,17 @@ public class Controller3 {
             rs1.next();
             name1 = rs1.getString("subject");
             str1 = rs1.getString("faculty");
-            f5.setText(name1 + "\n" + str1);
+            if(m.find())
+            {
+                System.out.println("matched");
+                f5.setText(name1 + "\n" + str1);
+                f6.setText(name1 + "\n" + str1);
+                f7.setText(name1 + "\n" + str1);
+
+            }
+            else{
+                f5.setText(name1 + "\n" + str1);
+            }
 
             sql3 = "SELECT * FROM timetable5b WHERE day='FRIDAY' AND hour='6'";
 
@@ -564,5 +886,80 @@ public class Controller3 {
     }
 
 
+    public void update(ActionEvent actionEvent) {
+        String sql0="SELECT  `subject` FROM `timetable5b` WHERE day='"+comboBox12.getValue()+"' AND hour='"+comboBox121.getValue()+"';";
+        String sql1="DELETE FROM `timetable5b` WHERE day='"+comboBox12.getValue()+"' AND hour='"+comboBox121.getValue()+"';";
+        String sqlab1="DELETE FROM `timetable5b` WHERE day='"+comboBox12.getValue()+"' AND hour='"+comboBox121.getValue()+1+"';";
+        String sqlab2="DELETE FROM `timetable5b` WHERE day='"+comboBox12.getValue()+"' AND hour='"+comboBox121.getValue()+2+"';";
 
+        String sql3="INSERT INTO `timetable5b` (`day`, `hour`, `subject`, `faculty`, `section`) VALUES('"+comboBox12.getValue()+"', '"+comboBox121.getValue()+"', '"+comboBox1.getValue()+"', '"+label.getText()+"', 'B');";
+        String sqlabupdate="INSERT INTO `timetable5b` (`day`, `hour`, `subject`, `faculty`, `section`) VALUES('"+comboBox12.getValue()+"', '"+comboBox121.getValue()+1+"', '"+comboBox1.getValue()+"', '"+label.getText()+"', 'B');";
+        String sqlabupdate1="INSERT INTO `timetable5b` (`day`, `hour`, `subject`, `faculty`, `section`) VALUES('"+comboBox12.getValue()+"', '"+comboBox121.getValue()+2+"', '"+comboBox1.getValue()+"', '"+label.getText()+"', 'B');";
+
+        subjcount= (String) comboBox1.getValue();
+        String sql4="UPDATE `count` SET `countof`=countof-1 WHERE subject='"+subjcount+"' AND section='B'";
+
+        try {
+
+
+            rs=statement.executeQuery(sql0);
+            rs.next();
+            String subjectUpdate=rs.getString("subject");
+            String sql2="UPDATE `count` SET `countof`=countof+1 WHERE subject='"+subjectUpdate+"'AND section='B';";
+            Pattern p=Pattern.compile("LAB");
+            Matcher m=p.matcher(subjectUpdate);
+            if(m.find())
+            {String sqlabcount="UPDATE `count` SET `countof`=countof+4 WHERE subject='"+subjectUpdate+"'AND section='B';";
+                statement.execute(sql1);
+                statement.execute(sqlab1);
+                statement.execute(sqlab2);
+                statement.executeUpdate(sqlabcount);
+
+
+
+
+            }
+            else {
+
+                statement.execute(sql1);
+                statement.executeUpdate(sql2);
+                Pattern p1=Pattern.compile("LAB");
+                Matcher m1=p1.matcher(subjectUpdate);
+                if(m1.find()){
+                    statement.executeUpdate(sql3);
+                    statement.executeUpdate(sqlabupdate);
+                    statement.executeUpdate(sqlabupdate1);
+
+
+
+
+
+                }
+                else {
+                    statement.executeUpdate(sql3);
+                    statement.executeUpdate(sql4);
+                }
+
+            }
+
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void clearall(ActionEvent actionEvent) {
+        String sql="DELETE FROM `timetable5b`";
+        String sql1="UPDATE `count` SET `countof`=4 WHERE section='B';";
+        try {statement = connection.createStatement();
+            statement1 = connection.createStatement();
+            statement1.executeUpdate(sql1);
+            statement.execute(sql);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

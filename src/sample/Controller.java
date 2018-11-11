@@ -18,6 +18,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -32,7 +33,8 @@ public class Controller {
     public ComboBox combobox;
     public String SECTION;
     Statement statement,statement1;
-    public static int flag=0;
+    ResultSet rs;
+    public  int flag=0;
     connectionClass connectionclass=new connectionClass();
     Connection connection=connectionclass.getConnection();
     public void initialize() {
@@ -66,11 +68,20 @@ public class Controller {
            DELETE.setVisible(true);
            flag=1;
        }
-       else {
+       else {statement1 = connection.createStatement();
            String del = DELETE.getText();
-           String sql1 = "DELETE  FROM lecturers WHERE faculty ='" + del + "'";
+           String sql2="SELECT * FROM lecturers WHERE faculty ='" +del+ "'";
+           rs=statement1.executeQuery(sql2);
+           rs.next();
+           String subj = rs.getString("subject");
+           System.out.println(subj);
+           System.out.println("this executes");
            statement1 = connection.createStatement();
+           String sql1="DELETE  FROM lecturers WHERE faculty ='" +del+ "'";
            statement1.execute(sql1);
+           System.out.println("this executes1");
+           String sql3 = "DELETE  FROM `count` WHERE subject='"+subj+"';";
+           statement1.execute(sql3);
            LABEL.setText("Data successfully deleted");
            DELETE.setText("");
        }

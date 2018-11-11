@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootpane1" prefHeight="475.0" prefWidth="819.0" style="-fx-background-color: #336699#336699 #336699#336655;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller2">
+<AnchorPane fx:id="rootpane1" prefHeight="524.0" prefWidth="832.0" style="-fx-background-color: #336699#336699 #336699#336655;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller2">
    <children>
       <TableView layoutX="218.0" layoutY="73.0" prefHeight="27.0" prefWidth="601.0">
         <columns>
@@ -450,10 +450,12 @@
       <ComboBox fx:id="comboBox1" layoutX="29.0" layoutY="117.0" onAction="#initialize" prefWidth="150.0" />
       <Text fill="WHITE" layoutX="74.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FACULTY" />
       <Label fx:id="label" layoutX="34.0" layoutY="203.0" prefHeight="27.0" prefWidth="140.0" style="-fx-background-color: WHITE;" />
-      <Button layoutX="59.0" layoutY="406.0" mnemonicParsing="false" onAction="#assign" stylesheets="@../Styles.css" text="ASSIGN" />
+      <Button layoutX="14.0" layoutY="406.0" mnemonicParsing="false" onAction="#assign" stylesheets="@../Styles.css" text="ASSIGN" />
       <Text fill="WHITE" layoutX="87.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAY" />
       <Text fill="WHITE" layoutX="85.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HOUR" />
       <ComboBox fx:id="comboBox12" layoutX="29.0" layoutY="288.0" onAction="#initialize" prefWidth="150.0" />
       <ComboBox fx:id="comboBox121" layoutX="29.0" layoutY="365.0" onAction="#initialize" prefWidth="150.0" />
+      <Button fx:id="update" layoutX="114.0" layoutY="406.0" mnemonicParsing="false" onAction="#update" stylesheets="@../Styles.css" text="UPDATE" />
+      <Button layoutX="705.0" layoutY="478.0" mnemonicParsing="false" onAction="#clearall" stylesheets="@../Styles.css" text="CLEAR ALL" />
    </children>
 </AnchorPane>
